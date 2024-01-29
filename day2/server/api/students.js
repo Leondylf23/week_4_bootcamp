@@ -24,9 +24,9 @@ const add = async (request, reply) => {
         Validation.studentFormValidation(request.body);
 
         const formData = request.body;
-        const insertId = await StudentHelper.addStudentData(formData);
+        await StudentHelper.addStudentData(formData);
 
-        return reply.send({id: insertId});
+        return reply.send("Student added successfully");
     } catch (err) {
         console.log([fileName, 'list', 'ERROR'], { info: `${err}` });
         return reply.send(GeneralHelper.errorResponse(err));
@@ -34,9 +34,8 @@ const add = async (request, reply) => {
 }
 const update = async (request, reply) => {
     try {
-        Validation.studentIdValidation(request.query)
+        // Validation.stu
         Validation.studentFormValidation(request.body);
-
         const { id } = request.query;
         const formData = request.body;
 
@@ -50,7 +49,7 @@ const update = async (request, reply) => {
 }
 const deleteData = async (request, reply) => {
     try {
-        Validation.studentIdValidation(request.query);
+        // Validation.pokemonListValidation(request.query);
 
         const { id } = request.query;
         await StudentHelper.deleteStudentData({ id });

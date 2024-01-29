@@ -35,7 +35,7 @@ const addStudentData = async (dataObject) => {
 
     writeDataToJSON(studentData);
 
-    return Promise.resolve(latestIdNow);
+    return Promise.resolve();
 }
 const updateExistingData = async (dataObject) => {
     const { id, formData } = dataObject;
