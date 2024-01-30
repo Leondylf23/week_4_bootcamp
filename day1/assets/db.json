@@ -1,1 +1,60 @@
-{"latestId":70,"students":[{"id":1,"name":"Ini student","studentClass":"12A","grade":97},{"id":4,"name":"student4","studentClass":"11C","grade":86},{"id":25,"name":"studentaaa","studentClass":"11C","grade":86},{"id":27,"name":"studenttestedit","studentClass":"12D","grade":90},{"id":28,"name":"studenttest","studentClass":"12D","grade":"90"},{"id":29,"name":"studenttest","studentClass":"12D","grade":90},{"id":30,"name":"studenttestput","studentClass":"12D","grade":90},{"id":31,"name":"studenttesterr","studentClass":"12D","grade":"90"},{"id":34,"name":"studenttestput","studentClass":"12D","grade":90},{"id":35,"name":"studenttesterr","studentClass":"12D","grade":"90"},{"id":36,"name":"studenttest","studentClass":"12D","grade":90},{"id":37,"name":"studenttestput","studentClass":"12D","grade":90},{"id":38,"name":"studenttest","studentClass":"12D","grade":90},{"id":39,"name":"studenttestput","studentClass":"12D","grade":90},{"id":40,"name":"studenttest","studentClass":"12D","grade":90},{"id":41,"name":"studenttestput","studentClass":"12D","grade":90},{"id":42,"name":"studenttest","studentClass":"12D","grade":90},{"id":43,"name":"studenttestput","studentClass":"12D","grade":90},{"id":44,"name":"studenttest","studentClass":"12D","grade":90},{"id":46,"name":"studenttest","studentClass":"12D","grade":90},{"id":48,"name":"studenttest","studentClass":"12D","grade":90},{"id":49,"name":"studenttestput","studentClass":"12D","grade":90},{"id":50,"name":"student put","studentClass":"10A","grade":100},{"id":51,"name":"studenttest","studentClass":"12D","grade":90},{"id":52,"name":"studenttestput","studentClass":"12D","grade":90},{"id":53,"name":"studenttest","studentClass":"12D","grade":90},{"id":54,"name":"studenttestput","studentClass":"12D","grade":90},{"id":55,"name":"studenttest","studentClass":"12D","grade":90},{"id":56,"name":"studenttestput","studentClass":"12D","grade":90},{"id":57,"name":"studenttest","studentClass":"12D","grade":90},{"id":58,"name":"studenttestput","studentClass":"12D","grade":90},{"id":59,"name":"studenttest","studentClass":"12D","grade":90},{"id":60,"name":"studenttestput","studentClass":"12D","grade":90},{"id":61,"name":"studenttestediterr","studentClass":"12D","grade":90},{"id":62,"name":"studenttest","studentClass":"12D","grade":90},{"id":63,"name":"studenttestput","studentClass":"12D","grade":90},{"id":65,"name":"studenttest","studentClass":"12D","grade":90},{"id":66,"name":"studenttestput","studentClass":"12D","grade":90},{"id":68,"name":"studenttest","studentClass":"12D","grade":90},{"id":69,"name":"studenttestput","studentClass":"12D","grade":90}]}
+{
+  "latestId": 70,
+  "students": [
+    { "id": 1, "name": "Ini student", "studentClass": "12A", "grade": 97 },
+    { "id": 4, "name": "student4", "studentClass": "11C", "grade": 86 },
+    { "id": 25, "name": "studentaaa", "studentClass": "11C", "grade": 86 },
+    { "id": 27, "name": "studenttestedit", "studentClass": "12D", "grade": 90 },
+    { "id": 28, "name": "studenttest", "studentClass": "12D", "grade": "90" },
+    { "id": 29, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 30, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    {
+      "id": 31,
+      "name": "studenttesterr",
+      "studentClass": "12D",
+      "grade": "90"
+    },
+    { "id": 34, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    {
+      "id": 35,
+      "name": "studenttesterr",
+      "studentClass": "12D",
+      "grade": "90"
+    },
+    { "id": 36, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 37, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 38, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 39, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 40, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 41, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 42, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 43, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 44, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 46, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 48, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 49, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 50, "name": "student put", "studentClass": "10A", "grade": 100 },
+    { "id": 51, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 52, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 53, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 54, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 55, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 56, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 57, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 58, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 59, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 60, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    {
+      "id": 61,
+      "name": "studenttestediterr",
+      "studentClass": "12D",
+      "grade": 90
+    },
+    { "id": 62, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 63, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 65, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 66, "name": "studenttestput", "studentClass": "12D", "grade": 90 },
+    { "id": 68, "name": "studenttest", "studentClass": "12D", "grade": 90 },
+    { "id": 69, "name": "studenttestput", "studentClass": "12D", "grade": 90 }
+  ]
+}

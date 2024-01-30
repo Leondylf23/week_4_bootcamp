@@ -1,51 +1,29 @@
 const Joi = require('joi');
 const Boom = require('boom');
 
-// const studentListValidation = (data) => {
-//   const schema = Joi.object({
-//     name: Joi.string().optional().description('Student Name')
-//   });
+const pokemonListData = (data) => {
+  const schema = Joi.object({
+    offset: Joi.number().optional().integer().description("Offset of page"),
+    limit: Joi.number().optional().integer().description("Limit of page"),
+  });
 
-//   if (schema.validate(data).error) {
-//     throw Boom.badRequest(schema.validate(data).error);
-//   }
-// };
-// const studentFormValidation = (data) => {
-//   const schema = Joi.object({
-//     name: Joi.string().description("Name of student"),
-//     studentClass: Joi.string().description("Class of student"),
-//     grade: Joi.number().description("Grade of student")
-//   });
-
-//   if (schema.validate(data).error) {
-//     throw Boom.badRequest(schema.validate(data).error);
-//   }
-// }
-// const studentUpdateFormValidation = (data) => {
-//   const schema = Joi.object({
-//     id: Joi.number().description("Id of Student"),
-//     name: Joi.string().description("Name of student"),
-//     studentClass: Joi.string().description("Class of student"),
-//     grade: Joi.number().description("Grade of student")
-//   });
-
-//   if (schema.validate(data).error) {
-//     throw Boom.badRequest(schema.validate(data).error);
-//   }
-// }
-// const studentDeleteValidation = (data) => {
-//   const schema = Joi.object({
-//     id: Joi.number().description("Id of Student"),
-//   });
-
-//   if (schema.validate(data).error) {
-//     throw Boom.badRequest(schema.validate(data).error);
-//   }
-// }
-
+  if (schema.validate(data).error) {
+    throw Boom.badRequest(schema.validate(data).error);
+  }
+}
 const pokemonDetailId = (data) => {
   const schema = Joi.object({
-    id: Joi.number().required().integer().description("Id of pokeomn"),
+    id: Joi.number().required().integer().description("Id of pokemon"),
+  });
+
+  if (schema.validate(data).error) {
+    throw Boom.badRequest(schema.validate(data).error);
+  }
+}
+const pokemonRenameValidation = (data) => {
+  const schema = Joi.object({
+    id: Joi.number().required().integer().description("Id of pokemon"),
+    name: Joi.string().required().alphanum().description("Name of pokemon"),
   });
 
   if (schema.validate(data).error) {
@@ -54,5 +32,7 @@ const pokemonDetailId = (data) => {
 }
 
 module.exports = {
-  pokemonDetailId
+  pokemonDetailId,
+  pokemonRenameValidation,
+  pokemonListData
 };
