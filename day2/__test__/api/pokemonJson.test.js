@@ -353,7 +353,7 @@ describe('Pokemon Json', () => {
         .then(res => {
           const data = res.body;
           expect(data.length).toBeGreaterThan(1);
-          
+
           createdIds.forEach(id => {
             const golduck = _.find(data, (item) => item.id == id);
             expect(golduck).toBeTruthy();
@@ -368,12 +368,12 @@ describe('Pokemon Json', () => {
     });
 
     test('Should Return 200: Renamed with last created pokemon ids and return name with and without fibonacci', async () => {
-      const fibonacci = ["", 0, 1, 1, 2];
+      const fibonacci = [0, 1, 1, 2];
       createdIds.sort((a, b) => a - b);
-      console.log(createdIds, "<<<<<<<<<<<<<<<<<<");
+
       for (let index = 0; index < createdIds.length; index++) {
         const e = createdIds[index];
-        
+
         body = {
           id: e,
           name: pokemon
@@ -385,8 +385,8 @@ describe('Pokemon Json', () => {
           .expect(200);
 
         const data = res.body;
-  
-        expect(data?.name).toEqual(`${pokemon}${fibonacci[index] != "" ? `-${fibonacci[index]}` : ""}`);
+
+        expect(data?.name).toEqual(`${pokemon}${index > 0 ? `-${fibonacci[index - 1]}` : ""}`);
       }
     });
     test('Should Return 404: Renamed with unknown id', async () => {
@@ -429,6 +429,90 @@ describe('Pokemon Json', () => {
         .patch(`${apiUrl}`)
         .send(body)
         .expect(400);
+    });
+  });
+  describe("Release pokemon (delete)", () => {
+    beforeEach(() => {
+      apiUrl = "/pokemon/release-pokemon";
+    });
+
+    test('Should Return 200: Release all last catched pokemons', async () => {
+      const checkIsPrime = num => {
+        for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+          if (num % i === 0) return false;
+        }
+        return num > 1;
+      }
+
+      for (let index = 0; index < createdIds.length; index++) {
+        const element = createdIds[index];
+        let maxAttemp = 20;
+        let attempt = 0;
+        let isDeleted = false;
+
+        body = {
+          id: element
+        }
+
+        while (attempt <= maxAttemp && !isDeleted) {
+          const res = await Request(server)
+            .delete(`${apiUrl}`)
+            .send(body)
+            .expect(200);
+
+          const data = res.body;
+          const isPrime = data.isPrime;
+          const number = data.number;
+
+          expect(isPrime === checkIsPrime(number)).toBeTruthy();
+
+          if (data.isPrime) {
+            isDeleted = true;
+            break;
+          }
+          attempt++;
+        }
+      }
+    });
+    test('Should Return 404: Release same as last released and return error 404 not found for finding non-existing ids', async () => {
+      for (let index = 0; index < createdIds.length; index++) {
+        const element = createdIds[index];
+        body = {
+          id: element
+        }
+
+        await Request(server)
+          .delete(`${apiUrl}`)
+          .send(body)
+          .expect(404)
+      }
+    });
+    test('Should Return 400: Release no keys in request body', async () => {
+      body = {
+        
+      }
+
+      await Request(server)
+        .delete(`${apiUrl}`)
+        .expect(400)
+    });
+    test('Should Return 400: Release with string in id key', async () => {
+      body = {
+        id: "adwa"
+      }
+
+      await Request(server)
+        .delete(`${apiUrl}`)
+        .expect(400)
+    });
+    test('Should Return 400: Release with unknown key', async () => {
+      body = {
+        dwawadelete: "adwa"
+      }
+
+      await Request(server)
+        .delete(`${apiUrl}`)
+        .expect(400)
     });
   });
 });
