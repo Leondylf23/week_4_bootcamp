@@ -65,9 +65,16 @@ const getPokemonDataListAPI = async (offset, limit) => {
     return Promise.resolve(mappedData);
 }
 const getPokemonDetailDataAPI = async (id) => {
-    const data = await getPokemonDetail(id);
-    const mappedData = { ...data, location_area_encounters: undefined, is_default: undefined, game_indices: undefined, sprites: undefined, moves: undefined }
-    return Promise.resolve(mappedData);
+    try {
+        let data = await getPokemonDetail(id);
+        const mappedData = { ...data, location_area_encounters: undefined, is_default: undefined, game_indices: undefined, sprites: undefined, moves: undefined }
+
+        return Promise.resolve(mappedData);
+    } catch (error) {
+        if(error?.response?.status === 404) throw Boom.notFound("Pokemon not found from API!");
+
+        throw error;
+    }
 }
 const getMyPokemons = async () => {
     const data = await getJSONParsedData();
@@ -136,7 +143,7 @@ const renamePokemon = async (id, name) => {
 
     await writeDataToJSON(localData);
 
-    return Promise.resolve(`Successfully renamed to ${renamed}`);
+    return Promise.resolve({ name: renamed, message: `Successfully renamed to ${renamed}`});
 }
 const releasePokemon = async (id) => {
     const randNumber = Math.floor(Math.random() * 10);
@@ -155,7 +162,7 @@ const releasePokemon = async (id) => {
         await writeDataToJSON(localData);
     }
 
-    return Promise.resolve(`You get number ${randNumber} which is ${isPrimeNum ? "prime" : "not prime"}. Your pokemon ${pokemonName} is ${isPrimeNum ? "" : "not"} released!`);
+    return Promise.resolve({number: randNumber, isPrime: isPrimeNum, message: `You get number ${randNumber} which is ${isPrimeNum ? "prime" : "not prime"}. Your pokemon ${pokemonName} is ${isPrimeNum ? "" : "not"} released!`});
 }
 
 module.exports = {
