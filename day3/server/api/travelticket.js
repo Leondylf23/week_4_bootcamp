@@ -55,11 +55,11 @@ const allCustomers = async (request, reply) => {
     try {
         const response = await TraverticketHelper.getAllCustomers();
 
-        const formatDate = response.map(e => ({...e, customer_dob: new Date(e.customer_dob).toISOString().slice(0, 10)}));
+        const formatedDateDatas = response.map(e => ({...e, customer_dob: new Date(e.customer_dob).toISOString().slice(0, 10)}));
 
         return reply.send({
             message: 'success',
-            data: response
+            data: formatedDateDatas
         });
     } catch (err) {
         console.log([fileName, 'All Customers API', 'ERROR'], { info: `${err}` });
