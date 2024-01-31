@@ -211,21 +211,21 @@ const unapplyCoupon = async (request, reply) => {
     }
 };
 
-Router.get('/bookings/all', allBookings);
-Router.get('/bookings/detail', getBookingDetail);
-Router.get('/coupons', allCoupons);
-Router.get('/customers', allCustomers);
+Router.get('/booking/all', allBookings);
+Router.get('/booking/detail', getBookingDetail);
+Router.get('/coupon', allCoupons);
+Router.get('/customer', allCustomers);
 
-Router.post('/create/customer', createCustomer);
-Router.post('/create/booking', createBooking);
-Router.post('/create/coupon', createCoupon);
+Router.post('/customer/create', createCustomer);
+Router.post('/booking/create', createBooking);
+Router.post('/coupon/create', createCoupon);
 Router.post('/apply-coupon', appendCoupon);
 
-Router.patch('/edit/customer', editCustomer);
+Router.patch('/customer/edit', editCustomer);
 
-Router.delete('/delete/customer', deleteCustomer);
-Router.delete('/delete/booking', deleteBooking);
-Router.delete('/delete/coupon', deleteCoupon);
+Router.delete('/customer/delete', deleteCustomer);
+Router.delete('/booking/delete', deleteBooking);
+Router.delete('/coupon/delete', deleteCoupon);
 Router.delete('/unapply-coupon', unapplyCoupon);
 
 module.exports = Router;

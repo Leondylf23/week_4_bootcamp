@@ -13,7 +13,7 @@ let queryUpdate;
 let queryDelete;
 let latestCreatedId = 0;
 
-describe('Student Json', () => {
+describe('Travel Ticket Json', () => {
   beforeAll(() => {
     server = GeneralHelper.createTestServer('/students', StudentPlugin);
   });
@@ -22,7 +22,7 @@ describe('Student Json', () => {
     await server.close();
   });
 
-  describe('List', () => {
+  describe('Get data', () => {
     beforeEach(() => {
       apiUrl = '/students/list';
       query = {
