@@ -1,9 +1,9 @@
 const Joi = require('joi');
 const Boom = require('boom');
 
-const studentListValidation = (data) => {
+const bookingDetailValidation = (data) => {
   const schema = Joi.object({
-    name: Joi.string().optional().description('Student Name')
+    bookingId: Joi.number().integer().required().description('Booking id')
   });
 
   if (schema.validate(data).error) {
@@ -11,11 +11,10 @@ const studentListValidation = (data) => {
   }
 };
 
-const studentFormValidation = (data) => {
+const customerFormValidation = (data) => {
   const schema = Joi.object({
-    name: Joi.string().description("Name of student"),
-    studentClass: Joi.string().description("Class of student"),
-    grade: Joi.number().integer().description("Grade of student")
+    name: Joi.string().max(255).required().description('Name of customer'),
+    dob: Joi.date().required().description('date of birth customer'),
   });
 
   if (schema.validate(data).error) {
@@ -23,9 +22,55 @@ const studentFormValidation = (data) => {
   }
 };
 
-const studentIdValidation = (data) => {
+const bookingDataFormValidation = (data) => {
   const schema = Joi.object({
-    id: Joi.number().description("Id of Student"),
+    customerId: Joi.number().integer().required().description('Id of customer'),
+    type: Joi.string().valid('VIP','ECO').required().description('Type of booking, allowed only VIP and ECO.'),
+    price: Joi.number().min(5000).max(2000000).precision(2).required().description('Price of booking, should be minimum of 5000 and maximum of 2000000')
+  });
+
+  if (schema.validate(data).error) {
+    throw Boom.badRequest(schema.validate(data).error);
+  }
+};
+
+const couponDataFormValidation = (data) => {
+  const schema = Joi.object({
+    name: Joi.string().max(255).required().description('Name of coupon'),
+    priceCut: Joi.number().min(5000).max(200000).precision(2).required().description('Price cut of coupon, should be minimum of 5000 and maximum of 200000')
+  });
+
+  if (schema.validate(data).error) {
+    throw Boom.badRequest(schema.validate(data).error);
+  }
+};
+
+const appendCouponValidation = (data) => {
+  const schema = Joi.object({
+    couponId: Joi.number().integer().required().description('Id of coupon'),
+    bookingId: Joi.number().integer().required().description('Id of booking')
+  });
+
+  if (schema.validate(data).error) {
+    throw Boom.badRequest(schema.validate(data).error);
+  }
+};
+
+const editCustomerFormValidation = (data) => {
+  const schema = Joi.object({
+    id: Joi.number().integer().required().description('Id of customer'),
+    name: Joi.string().max(255).required().description('Name of customer'),
+    dob: Joi.date().required().description('date of birth customer'),
+  });
+
+  if (schema.validate(data).error) {
+    throw Boom.badRequest(schema.validate(data).error);
+  }
+};
+
+const deleteWithIdValidation = (data) => {
+  const schema = Joi.object({
+    id: Joi.number().integer().required().description('Id must be number'),
   });
 
   if (schema.validate(data).error) {
@@ -34,7 +79,11 @@ const studentIdValidation = (data) => {
 };
 
 module.exports = {
-  studentListValidation,
-  studentFormValidation,
-  studentIdValidation
+  bookingDetailValidation,
+  customerFormValidation,
+  bookingDataFormValidation,
+  couponDataFormValidation,
+  appendCouponValidation,
+  editCustomerFormValidation,
+  deleteWithIdValidation
 };

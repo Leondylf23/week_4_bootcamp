@@ -6,7 +6,7 @@ const app = express();
 const Port = process.env.NODEJS_PORT || 8080;
 
 // Import routes
-const Students = require('./server/api/students');
+const TravelTicket = require('./server/api/travelticket');
 
 dotenv.config();
 
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 });
 
 // Route middlewares
-app.use('/students', Students);
+app.use('/travelticket', TravelTicket);
 
 // Sys ping api 
 app.get('/sys/ping', (req, res) => {

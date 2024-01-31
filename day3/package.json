@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "jest --coverage=true  --forceExit"
   },
   "repository": {
@@ -22,6 +22,8 @@
     "joi": "13.0.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
+    "mysql2": "^3.9.1",
+    "nodemon": "^3.0.3",
     "promise-mysql2": "^1.0.0",
     "qs": "^6.10.3",
     "semver": "^7.3.5"
