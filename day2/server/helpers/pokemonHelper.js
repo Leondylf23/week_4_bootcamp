@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const fs = require('fs/promises');
 const Boom = require('boom');
+
 const { getPokemons, getPokemonDetail } = require('../services/PokemonAPI');
 
 const prevouslyTryCatchPokemons = [];
