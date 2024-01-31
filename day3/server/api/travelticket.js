@@ -206,12 +206,12 @@ const unapplyCoupon = async (request, reply) => {
             message: response,
         });
     } catch (err) {
-        console.log([fileName, 'Delete Coupon Data API', 'ERROR'], { info: `${err}` });
+        console.log([fileName, 'Unapply Coupon Data API', 'ERROR'], { info: `${err}` });
         return reply.send(GeneralHelper.errorResponse(err));
     }
 };
 
-Router.get('/booking/all', allBookings);
+Router.get('/booking', allBookings);
 Router.get('/booking/detail', getBookingDetail);
 Router.get('/coupon', allCoupons);
 Router.get('/customer', allCustomers);
