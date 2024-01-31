@@ -219,7 +219,8 @@ Router.get('/customer', allCustomers);
 Router.post('/customer/create', createCustomer);
 Router.post('/booking/create', createBooking);
 Router.post('/coupon/create', createCoupon);
-Router.post('/coupon/apply', appendCoupon);
+
+Router.put('/coupon/apply', appendCoupon);
 
 Router.patch('/customer/edit', editCustomer);
 
