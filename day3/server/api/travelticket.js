@@ -219,13 +219,13 @@ Router.get('/customer', allCustomers);
 Router.post('/customer/create', createCustomer);
 Router.post('/booking/create', createBooking);
 Router.post('/coupon/create', createCoupon);
-Router.post('/apply-coupon', appendCoupon);
+Router.post('/coupon/apply', appendCoupon);
 
 Router.patch('/customer/edit', editCustomer);
 
 Router.delete('/customer/delete', deleteCustomer);
 Router.delete('/booking/delete', deleteBooking);
 Router.delete('/coupon/delete', deleteCoupon);
-Router.delete('/unapply-coupon', unapplyCoupon);
+Router.delete('/coupon/unapply', unapplyCoupon);
 
 module.exports = Router;
