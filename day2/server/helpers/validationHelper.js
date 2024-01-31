@@ -10,7 +10,8 @@ const pokemonListData = (data) => {
   if (schema.validate(data).error) {
     throw Boom.badRequest(schema.validate(data).error);
   }
-}
+};
+
 const pokemonDetailId = (data) => {
   const schema = Joi.object({
     id: Joi.number().required().integer().description("Id of pokemon"),
@@ -19,7 +20,8 @@ const pokemonDetailId = (data) => {
   if (schema.validate(data).error) {
     throw Boom.badRequest(schema.validate(data).error);
   }
-}
+};
+
 const pokemonRenameValidation = (data) => {
   const schema = Joi.object({
     id: Joi.number().required().integer().description("Id of pokemon"),
@@ -29,7 +31,7 @@ const pokemonRenameValidation = (data) => {
   if (schema.validate(data).error) {
     throw Boom.badRequest(schema.validate(data).error);
   }
-}
+};
 
 module.exports = {
   pokemonDetailId,

@@ -2,7 +2,6 @@ const _ = require('lodash');
 const fs = require('fs/promises');
 const Boom = require('boom');
 
-// PRIVATE FUNCTIONS   
 const _getJSONParsedData = async () => {
     const studentJSON = await fs.readFile("./assets/db.json", "utf-8");
     return JSON.parse(studentJSON);
@@ -12,8 +11,6 @@ const _writeDataToJSON = async (jsonData) => {
     await fs.writeFile("./assets/db.json", JSON.stringify(jsonData));
 };
 
-
-// STUDENT HELPER FUNCTIONS
 const getStudentsData = async (dataObject) => {
     const { name } = dataObject;
     

@@ -44,7 +44,7 @@ const update = async (request, reply) => {
 
         await StudentHelper.updateExistingData({ id, formData });
 
-        return reply.send('Student updated successfully');
+        return reply.send("Student updated successfully");
     } catch (err) {
         console.log([fileName, 'list', 'ERROR'], { info: `${err}` });
         return reply.send(GeneralHelper.errorResponse(err));
@@ -58,7 +58,7 @@ const deleteData = async (request, reply) => {
         const { id } = request.query;
         await StudentHelper.deleteStudentData({ id });
 
-        return reply.send('Student deleted successfully');
+        return reply.send("Student deleted successfully");
     } catch (err) {
         console.log([fileName, 'list', 'ERROR'], { info: `${err}` });
         return reply.send(GeneralHelper.errorResponse(err));
@@ -69,6 +69,6 @@ Router.get('/list', list);
 Router.post('/add', add);
 Router.put('/addput', add);
 Router.patch('/update', update);
-Router.delete('/delete', deleteData);
+Router.delete("/delete", deleteData);
 
 module.exports = Router;
