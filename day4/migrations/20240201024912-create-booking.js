@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       booking_price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10,2)
       },
       is_active: {
         type: Sequelize.BOOLEAN,

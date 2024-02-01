@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       coupon_prc_cut: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10, 2)
       },
       is_active: {
         type: Sequelize.BOOLEAN,
