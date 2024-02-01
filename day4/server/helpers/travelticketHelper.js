@@ -1,20 +1,26 @@
 const _ = require('lodash');
 const Boom = require('boom');
 const db = require('../../models');
+const { like } = require('sequelize/lib/operators');
 
 const GeneralHelper = require('./generalHelper');
 
 // PRIVATE FUNCTIONS
 
 // TRAVELTICKET HELPERS FUNCTIONS
-const getAllBooking = async () => {
+const getAllBooking = async (dataObject) => {
+    const { bookingType, customerName } = dataObject;
+
     try {
         const data = await db.booking.findAll({
             include: [
                 {
                     association: 'customer',
                     required: true,
-                    where: { is_active: true },
+                    where: { 
+                        is_active: true,
+                        ...(customerName && { customer_name: { [like]: `%${customerName}%` } })
+                     },
                     attributes: ['customer_name']
                 },
                 {
@@ -32,7 +38,10 @@ const getAllBooking = async () => {
                     ]
                 },
             ],
-            where: { is_active: true },
+            where: { 
+                is_active: true,
+                ...(bookingType && { booking_type: bookingType })
+            },
             attributes: { exclude: ['is_active', 'customer_id'] }
         });
 
@@ -79,10 +88,15 @@ const getBookingDetailWithId = async (dataObject) => {
     }
 };
 
-const getAllCoupons = async () => {
+const getAllCoupons = async (dataObject) => {
     try {
+        const { couponName } = dataObject;
+
         const data = await db.coupon.findAll({
-            where: { is_active: true },
+            where: { 
+                is_active: true,
+                ...(couponName && { coupon_name: { [like]: `%${couponName}%` } })
+            },
             attributes: { exclude: ['is_active'] }
         });
 
@@ -92,8 +106,9 @@ const getAllCoupons = async () => {
     }
 };
 
-const getAllCustomers = async () => {
+const getAllCustomers = async (dataObject) => {
     try {
+        const { customerName } = dataObject;
         const data = await db.customer.findAll({
             include: [
                 {
@@ -103,7 +118,10 @@ const getAllCustomers = async () => {
                     attributes: ['id', 'booking_type', 'booking_price', 'createdAt']
                 },
             ],
-            where: { is_active: true },
+            where: { 
+                is_active: true,
+                ...(customerName && { customer_name: { [like]: `%${customerName}%` } })
+            },
             attributes: { exclude: ['is_active'] },
         });
 
@@ -207,6 +225,26 @@ const editCustomerData = async (dataObject) => {
     }
 };
 
+const editCouponData = async (dataObject) => {
+    try {
+        const { id, name, priceCut } = dataObject;
+
+        const data = await db.coupon.findOne({
+            where: { id, is_active: true }
+        });
+        if(_.isEmpty(data)) throw Boom.notFound('Coupon not found!');
+
+        await data.update({ coupon_name: name, coupon_prc_cut: priceCut });
+
+        return Promise.resolve({ 
+            updatedId: data?.id,
+            updatedData: data
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
+};
+
 const deleteCustomer = async (dataObject) => {
     try {
         const { id } = dataObject;
@@ -295,6 +333,7 @@ module.exports = {
     appendCoupon,
 
     editCustomerData,
+    editCouponData,
 
     deleteCustomer,
     deleteBooking,

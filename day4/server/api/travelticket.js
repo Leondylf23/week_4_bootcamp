@@ -8,7 +8,10 @@ const fileName = 'server/api/travelticket.js';
 
 const allBookings = async (request, reply) => {
     try {
-        const response = await TraverticketHelper.getAllBooking();
+        Validation.allBookingValidation(request.query);
+
+        const formData = request.query;
+        const response = await TraverticketHelper.getAllBooking(formData);
 
         return reply.send({
             message: 'success',
@@ -39,7 +42,10 @@ const getBookingDetail = async (request, reply) => {
 
 const allCoupons = async (request, reply) => {
     try {
-        const response = await TraverticketHelper.getAllCoupons();
+        Validation.allCouponsValidation(request.query);
+
+        const formData = request.query;
+        const response = await TraverticketHelper.getAllCoupons(formData);
 
         return reply.send({
             message: 'success',
@@ -53,7 +59,10 @@ const allCoupons = async (request, reply) => {
 
 const allCustomers = async (request, reply) => {
     try {
-        const response = await TraverticketHelper.getAllCustomers();
+        Validation.allCustomersValidation(request.query);
+
+        const formData = request.query;
+        const response = await TraverticketHelper.getAllCustomers(formData);
 
         const formatedDateDatas = response.map(customer => ({...customer?.dataValues, customer_dob: new Date(customer?.dataValues?.customer_dob).toISOString().slice(0, 10)}));
 
@@ -152,6 +161,23 @@ const editCustomer = async (request, reply) => {
     }
 };
 
+const editCoupon = async (request, reply) => {
+    try {
+        Validation.editCouponFormValidation(request.body);
+
+        const formData = request.body;
+        const response = await TraverticketHelper.editCouponData(formData);
+
+        return reply.send({
+            message: "success",
+            data: response
+        });
+    } catch (err) {
+        console.log([fileName, 'Edit Coupon Data API', 'ERROR'], { info: `${err}` });
+        return reply.send(GeneralHelper.errorResponse(err));
+    }
+};
+
 const deleteCustomer = async (request, reply) => {
     try {
         Validation.deleteWithIdValidation(request.body);
@@ -232,6 +258,7 @@ Router.post('/coupon/create', createCoupon);
 Router.put('/coupon/apply', appendCoupon);
 
 Router.patch('/customer/edit', editCustomer);
+Router.patch('/coupon/edit', editCoupon);
 
 Router.delete('/customer/delete', deleteCustomer);
 Router.delete('/booking/delete', deleteBooking);
