@@ -190,9 +190,34 @@ const appendCoupon = async (dataObject) => {
         if(_.isEmpty(checkCouponId)) throw Boom.notFound("Coupon not found from this couponId!");
 
         const checkBookingId = await db.booking.findOne({
-            where: { id: bookingId, is_active: true }
+            where: { id: bookingId, is_active: true },
+            include: {
+                association: 'coupon_connectors',
+                required: false,
+                where: { is_active: true },
+                attributes: ['id'],
+                include: [
+                    {
+                        association: 'coupon',
+                        required: true,
+                        where: { is_active: true },
+                        attributes: ['coupon_prc_cut']
+                    }
+                ]
+            },
         });
         if(_.isEmpty(checkBookingId)) throw Boom.notFound("Booking not found from this bookingId!");
+
+        const appliedCouponsPrices = checkBookingId?.coupon_connectors?.map(coupon => parseFloat(coupon.coupon?.dataValues?.coupon_prc_cut));
+        const priceBooking = parseFloat(checkBookingId?.dataValues?.booking_price);
+        const priceCut = parseFloat(checkCouponId?.dataValues?.coupon_prc_cut);
+        let totalAppliedCouponsPrices = 0;
+
+        appliedCouponsPrices.forEach(price => {
+            totalAppliedCouponsPrices += price;
+        });
+
+        if(priceBooking < (priceCut + totalAppliedCouponsPrices)) throw Boom.badData("This booking is already reached maximum price cut!");
 
         const data = await db.coupon_connector.create({ coupon_id: couponId, booking_id: bookingId });
 
