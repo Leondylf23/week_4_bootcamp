@@ -206,7 +206,7 @@ const getAllCouponList = async (dataObject) => {
     }
 };
 
-const getAllCustomersList = async () => {
+const getAllCustomersList = async (dataObject) => {
     try {
         const timeStart = process.hrtime();
         const poolConnection = await ConnectionPool.getConnection();
