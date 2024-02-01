@@ -169,7 +169,7 @@ const getBookingDetail = async (dataObject) => {
     }
 };
 
-const getAllCouponList = async (dataObject) => {
+const getAllCouponList = async () => {
     try {
         const timeStart = process.hrtime();
         const poolConnection = await ConnectionPool.getConnection();

@@ -1,23 +1,38 @@
 const _ = require('lodash');
 const Boom = require('boom');
+const db = require('../../models');
 
 const { getAllBookingData, addCustomerData, addBookingData, addNewCouponData, appendCouponToBooking, getBookingDetail, getAllCouponList, getAllCustomersList, updateCustomerData, updateCustomerDataIsDeleted, updateBookingDataIsDeleted, updateCouponsDataIsDeleted, updateUnapplyCouponData, checkCustomer, checkBooking, checkCoupon, checkCouponConnector, checkCouponAndBooking } = require('../services/database');
+const GeneralHelper = require('./generalHelper');
 
 // PRIVATE FUNCTIONS
 
 // TRAVELTICKET HELPERS FUNCTIONS
 const getAllBooking = async (dataObject) => {
-    const bookingData = await getAllBookingData();
+    try {
+        const bookingData = db.booking.findAll({
+            include: 'customer'
+        });
 
-    return Promise.resolve(bookingData);
+        return Promise.resolve(bookingData);
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const getBookingDetailWithId = async (dataObject) => {
-    const bookingData = await getBookingDetail(dataObject);
+    try {
+        const bookingData = db.booking.findOne({
+            where: { id: dataObject?.bookingId },
+            include: 'customer'
+        });
 
-    if(_.isEmpty(bookingData)) throw Boom.notFound('Booking detail is not found!');
+        if(_.isEmpty(bookingData)) throw Boom.notFound('Booking detail is not found!');
 
-    return Promise.resolve(bookingData);
+        return Promise.resolve(bookingData);
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const getAllCoupons = async (dataObject) => {

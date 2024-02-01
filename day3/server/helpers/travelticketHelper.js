@@ -6,30 +6,30 @@ const { getAllBookingData, addCustomerData, addBookingData, addNewCouponData, ap
 // PRIVATE FUNCTIONS
 
 // TRAVELTICKET HELPERS FUNCTIONS
-const getAllBooking = async (dataObject) => {
-    const bookingData = await getAllBookingData();
+const getAllBooking = async () => {
+    const data = await getAllBookingData();
 
-    return Promise.resolve(bookingData);
+    return Promise.resolve(data);
 };
 
 const getBookingDetailWithId = async (dataObject) => {
-    const bookingData = await getBookingDetail(dataObject);
+    const data = await getBookingDetail(dataObject);
 
-    if(_.isEmpty(bookingData)) throw Boom.notFound('Booking detail is not found!');
+    if(_.isEmpty(data)) throw Boom.notFound('Booking detail is not found!');
 
-    return Promise.resolve(bookingData);
+    return Promise.resolve(data);
 };
 
-const getAllCoupons = async (dataObject) => {
-    const bookingData = await getAllCouponList();
+const getAllCoupons = async () => {
+    const data = await getAllCouponList();
 
-    return Promise.resolve(bookingData);
+    return Promise.resolve(data);
 };
 
-const getAllCustomers = async (dataObject) => {
-    const bookingData = await getAllCustomersList();
+const getAllCustomers = async () => {
+    const data = await getAllCustomersList();
 
-    return Promise.resolve(bookingData);
+    return Promise.resolve(data);
 };
 
 const addCustomer = async (dataObject) => {
