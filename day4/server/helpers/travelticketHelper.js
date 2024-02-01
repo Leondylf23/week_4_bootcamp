@@ -2,19 +2,41 @@ const _ = require('lodash');
 const Boom = require('boom');
 const db = require('../../models');
 
-const { getAllBookingData, addCustomerData, addBookingData, addNewCouponData, appendCouponToBooking, getBookingDetail, getAllCouponList, getAllCustomersList, updateCustomerData, updateCustomerDataIsDeleted, updateBookingDataIsDeleted, updateCouponsDataIsDeleted, updateUnapplyCouponData, checkCustomer, checkBooking, checkCoupon, checkCouponConnector, checkCouponAndBooking } = require('../services/database');
 const GeneralHelper = require('./generalHelper');
 
 // PRIVATE FUNCTIONS
 
 // TRAVELTICKET HELPERS FUNCTIONS
-const getAllBooking = async (dataObject) => {
+const getAllBooking = async () => {
     try {
-        const bookingData = db.booking.findAll({
-            include: 'customer'
+        const data = await db.booking.findAll({
+            include: [
+                {
+                    association: 'customer',
+                    required: true,
+                    where: { is_active: true },
+                    attributes: ['customer_name']
+                },
+                {
+                    association: 'coupon_connectors',
+                    required: false,
+                    where: { is_active: true },
+                    attributes: ['id'],
+                    include: [
+                        {
+                            association: 'coupon',
+                            required: true,
+                            where: { is_active: true },
+                            attributes: ['coupon_name', 'coupon_prc_cut']
+                        }
+                    ]
+                },
+            ],
+            where: { is_active: true },
+            attributes: { exclude: ['is_active', 'customer_id'] }
         });
 
-        return Promise.resolve(bookingData);
+        return Promise.resolve(data);
     } catch (err) {
         return Promise.reject(GeneralHelper.errorResponse(err));
     }
@@ -22,115 +44,243 @@ const getAllBooking = async (dataObject) => {
 
 const getBookingDetailWithId = async (dataObject) => {
     try {
-        const bookingData = db.booking.findOne({
-            where: { id: dataObject?.bookingId },
-            include: 'customer'
+        const data = await db.booking.findOne({
+            include: [
+                {
+                    association: 'customer',
+                    required: true,
+                    where: { is_active: true },
+                    attributes: ['customer_name']
+                },
+                {
+                    association: 'coupon_connectors',
+                    required: false,
+                    where: { is_active: true },
+                    attributes: ['id'],
+                    include: [
+                        {
+                            association: 'coupon',
+                            required: true,
+                            where: { is_active: true },
+                            attributes: ['coupon_name', 'coupon_prc_cut']
+                        }
+                    ]
+                },
+            ],
+            attributes: { exclude: ['is_active', 'customer_id'] },
+            where: { id: dataObject?.bookingId, is_active: true },
         });
 
-        if(_.isEmpty(bookingData)) throw Boom.notFound('Booking detail is not found!');
+        if(_.isEmpty(data)) throw Boom.notFound('Booking detail is not found!');
 
-        return Promise.resolve(bookingData);
+        return Promise.resolve(data);
     } catch (err) {
         return Promise.reject(GeneralHelper.errorResponse(err));
     }
 };
 
-const getAllCoupons = async (dataObject) => {
-    const bookingData = await getAllCouponList();
+const getAllCoupons = async () => {
+    try {
+        const data = await db.coupon.findAll({
+            where: { is_active: true },
+            attributes: { exclude: ['is_active'] }
+        });
 
-    return Promise.resolve(bookingData);
+        return Promise.resolve(data);
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
-const getAllCustomers = async (dataObject) => {
-    const bookingData = await getAllCustomersList();
+const getAllCustomers = async () => {
+    try {
+        const data = await db.customer.findAll({
+            include: [
+                {
+                    association: 'bookings',
+                    required: false,
+                    where: { is_active: true },
+                    attributes: ['id', 'booking_type', 'booking_price', 'createdAt']
+                },
+            ],
+            where: { is_active: true },
+            attributes: { exclude: ['is_active'] },
+        });
 
-    return Promise.resolve(bookingData);
+        return Promise.resolve(data);
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const addCustomer = async (dataObject) => {
-    const isExecuted = await addCustomerData(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when executing API!');
+    try {
+        const { name, dob } = dataObject;
+        const data = await db.customer.create({ customer_name: name, customer_dob: dob });
 
-    return Promise.resolve('Successfully added customer to database.');
+        return Promise.resolve({ 
+            createdId: data?.id,
+            createdData: data
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const addBooking = async (dataObject) => {
-    const checkArr = await checkCustomer({id: dataObject?.customerId});
-    if(_.isEmpty(checkArr)) throw Boom.notFound('Customer data not found!');
+    try {
+        const { customerId, type, price } = dataObject;
 
-    const isExcecuted = await addBookingData(dataObject);
-    if(!isExcecuted) throw Boom.internal('Something wrong when executing API!');
+        const checkCustomerId = await db.customer.findOne({
+            where: { id: customerId, is_active: true }
+        });
+        if(_.isEmpty(checkCustomerId)) throw Boom.notFound("Customer not found from this id!")
 
-    return Promise.resolve('Successfully added booking to database.');
+        const data = await db.booking.create({ customer_id: customerId, booking_type: type, booking_price: price });
+
+        return Promise.resolve({ 
+            createdId: data?.id,
+            createdData: data
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const addCoupon = async (dataObject) => {
-    const isExecuted = await addNewCouponData(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when executing API!');
+    try {
+        const { name, priceCut } = dataObject;
 
-    return Promise.resolve('Successfully added new coupon to database.');
+        const data = await db.coupon.create({ coupon_name: name, coupon_prc_cut: priceCut });
+
+        return Promise.resolve({ 
+            createdId: data?.id,
+            createdData: data
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const appendCoupon = async (dataObject) => {
-    const checkArr = await checkCouponAndBooking({ couponId: dataObject?.couponId, bookingId: dataObject?.bookingId });
+    try {
+        const { couponId, bookingId } = dataObject;
 
-    if(_.isEmpty(checkArr?.coupon)) throw Boom.notFound('Coupon data not found!');
-    if(_.isEmpty(checkArr?.booking)) throw Boom.notFound('Booking data not found!');
-    
-    const isExecuted = await appendCouponToBooking(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when executing API!');
+        const checkCouponId = await db.coupon.findOne({
+            where: { id: couponId, is_active: true }
+        });
+        if(_.isEmpty(checkCouponId)) throw Boom.notFound("Coupon not found from this couponId!");
 
-    return Promise.resolve('Successfully add coupon to booking to database.');
+        const checkBookingId = await db.booking.findOne({
+            where: { id: bookingId, is_active: true }
+        });
+        if(_.isEmpty(checkBookingId)) throw Boom.notFound("Booking not found from this bookingId!");
+
+        const data = await db.coupon_connector.create({ coupon_id: couponId, booking_id: bookingId });
+
+        return Promise.resolve({ 
+            createdId: data?.id,
+            createdData: data
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const editCustomerData = async (dataObject) => {
-    const checkArr = await checkCustomer(dataObject);
-    if(_.isEmpty(checkArr)) throw Boom.notFound('Customer data not found!');
+    try {
+        const { id, name, dob } = dataObject;
 
-    const isExecuted = await updateCustomerData(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when excecuting API!');
+        const data = await db.customer.findOne({
+            where: { id, is_active: true }
+        });
+        if(_.isEmpty(data)) throw Boom.notFound('Customer not found!');
 
-    return Promise.resolve('Successfully update customer data in database.');
+        await data.update({ customer_name: name, customer_dob: dob });
+
+        return Promise.resolve({ 
+            updatedId: data?.id,
+            updatedData: data
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const deleteCustomer = async (dataObject) => {
-    const checkArr = await checkCustomer(dataObject);
-    if(_.isEmpty(checkArr)) throw Boom.notFound('Customer data not found!');
+    try {
+        const { id } = dataObject;
 
-    const isExecuted = await updateCustomerDataIsDeleted(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when excecuting API!');
+        const data = await db.customer.findOne({
+            where: { id, is_active: true }
+        });
+        if(_.isEmpty(data)) throw Boom.notFound('Customer not found!');
 
-    return Promise.resolve('Successfully delete customer data in database.');
+        await data.update({ is_active: false });
+
+        return Promise.resolve({ 
+            deletedId: data?.id,
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const deleteBooking = async (dataObject) => {
-    const checkArr = await checkBooking(dataObject);
-    if(_.isEmpty(checkArr)) throw Boom.notFound('Booking data not found!');
+    try {
+        const { id } = dataObject;
 
-    const isExecuted = await updateBookingDataIsDeleted(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when excecuting API!');
+        const data = await db.booking.findOne({
+            where: { id, is_active: true }
+        });
+        if(_.isEmpty(data)) throw Boom.notFound('Booking not found!');
 
-    return Promise.resolve('Successfully delete booking data in database.');
+        await data.update({ is_active: false });
+
+        return Promise.resolve({ 
+            deletedId: data?.id,
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const deleteCoupons = async (dataObject) => {
-    const checkArr = await checkCoupon(dataObject);
-    if(_.isEmpty(checkArr)) throw Boom.notFound('Coupon data not found!');
+    try {
+        const { id } = dataObject;
 
-    const isExecuted = await updateCouponsDataIsDeleted(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when excecuting API!');
+        const data = await db.coupon.findOne({
+            where: { id, is_active: true }
+        });
+        if(_.isEmpty(data)) throw Boom.notFound('Coupon not found!');
 
-    return Promise.resolve('Successfully delete coupon data in database.');
+        await data.update({ is_active: false });
+
+        return Promise.resolve({ 
+            deletedId: data?.id,
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 const unapplyCoupon = async (dataObject) => {
-    const checkArr = await checkCouponConnector(dataObject);
-    if(_.isEmpty(checkArr)) throw Boom.notFound('Coupon Connector data not found!');
+    try {
+        const { id } = dataObject;
 
-    const isExecuted = await updateUnapplyCouponData(dataObject);
-    if(!isExecuted) throw Boom.internal('Something wrong when excecuting API!');
+        const data = await db.coupon_connector.findOne({
+            where: { id, is_active: true }
+        });
+        if(_.isEmpty(data)) throw Boom.notFound('Connector not found!');
 
-    return Promise.resolve('Successfully unapply coupon in database.');
+        await data.update({ is_active: false });
+
+        return Promise.resolve({ 
+            deletedId: data?.id,
+         });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
 };
 
 module.exports = {

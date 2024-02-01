@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       is_active: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: 1
       },
       createdAt: {
         allowNull: false,
