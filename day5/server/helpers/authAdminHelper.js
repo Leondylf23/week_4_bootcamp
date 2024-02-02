@@ -1,14 +1,14 @@
 const _ = require('lodash');
 const Boom = require('boom');
 const bcrypt = require('bcrypt');
-const db = require('../../models');
 const jwt = require('jsonwebtoken');
 
+const db = require('../../models');
 const GeneralHelper = require('./generalHelper');
 
 const passwordSaltRound = bcrypt.genSaltSync(12);
 const signatureSecretKey = process.env.SIGN_SECRET_KEY || 'pgJApn9pJ8';
-const sessionAge = process.env.SESSION_AGE || '12h'
+const sessionAge = process.env.SESSION_AGE || '12h';
 
 // PRIVATE FUNCTIONS
 const __generateHashPassword = (password) => {

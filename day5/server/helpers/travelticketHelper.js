@@ -1,8 +1,8 @@
 const _ = require('lodash');
 const Boom = require('boom');
-const db = require('../../models');
 const { like } = require('sequelize/lib/operators');
 
+const db = require('../../models');
 const GeneralHelper = require('./generalHelper');
 
 // PRIVATE FUNCTIONS

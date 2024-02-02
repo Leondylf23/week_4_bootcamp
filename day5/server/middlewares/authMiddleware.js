@@ -33,7 +33,9 @@ const validateToken = (request, reply, next) => {
     return next();
   } catch (err) {
     console.log([fileName, 'validateToken', 'ERROR'], { info: `${err}` });
-    return reply.send(GeneralHelper.errorResponse(err))
+
+    const isTokenExpiredErr = err?.name === 'TokenExpiredError';
+    return reply.send(GeneralHelper.errorResponse(isTokenExpiredErr ? Boom.unauthorized('Token expired, please login again.') : err))
   }
 }
 
