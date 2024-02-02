@@ -320,7 +320,7 @@ const deleteBooking = async (dataObject, adminId) => {
     }
 };
 
-const deleteCoupons = async (dataObject) => {
+const deleteCoupons = async (dataObject, adminId) => {
     try {
         const { id } = dataObject;
 
@@ -342,7 +342,7 @@ const deleteCoupons = async (dataObject) => {
     }
 };
 
-const unapplyCoupon = async (dataObject) => {
+const unapplyCoupon = async (dataObject, adminId) => {
     try {
         const { id } = dataObject;
 

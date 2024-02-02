@@ -1,0 +1,1949 @@
+{
+	"info": {
+		"_postman_id": "b4276cac-8b5e-4783-89c1-002bc0dbb589",
+		"name": "Travel-Ticket",
+		"description": "Travel Ticket API NodeJS ExpressJS\n\nToken has been set to all request inherit from parent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22956573"
+	},
+	"item": [
+		{
+			"name": "[GET] Get All booking Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/travelticket/booking?bookingType=VIP&customerName=test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"booking"
+					],
+					"query": [
+						{
+							"key": "bookingType",
+							"value": "VIP"
+						},
+						{
+							"key": "customerName",
+							"value": "test"
+						}
+					]
+				},
+				"description": "Get bookings data with or without filter\n\nparams:\n\n(optional) bookingType: 'VIP' - acceptable(\\[ 'VIP', 'ECO'\\])\n\n(optional) customerName: 'name'"
+			},
+			"response": [
+				{
+					"name": "[GET] Get All booking Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/travelticket/booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"booking"
+							],
+							"query": [
+								{
+									"key": "bookingType",
+									"value": "VIP",
+									"disabled": true
+								},
+								{
+									"key": "customerName",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "616"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"268-ePNb4ixWXUbo6hb9zAmy3MrilEE\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:46:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"booking_type\": \"VIP\",\n            \"booking_price\": \"20000.00\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:43:28.000Z\",\n            \"updatedAt\": \"2024-02-02T07:43:28.000Z\",\n            \"customer\": {\n                \"customer_name\": \"test create\"\n            },\n            \"coupon_connectors\": []\n        },\n        {\n            \"id\": 2,\n            \"booking_type\": \"VIP\",\n            \"booking_price\": \"205000.00\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:43:38.000Z\",\n            \"updatedAt\": \"2024-02-02T07:43:38.000Z\",\n            \"customer\": {\n                \"customer_name\": \"test create\"\n            },\n            \"coupon_connectors\": [\n                {\n                    \"id\": 1,\n                    \"coupon\": {\n                        \"coupon_name\": \"Kupon diskon 2\",\n                        \"coupon_prc_cut\": \"70000.99\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"coupon\": {\n                        \"coupon_name\": \"Kupon diskon\",\n                        \"coupon_prc_cut\": \"40000.99\"\n                    }\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "[GET] Get All Customer Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/travelticket/customer?customerName=test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "customerName",
+							"value": "test"
+						}
+					]
+				},
+				"description": "Get customer data with or without filter\n\nparams:\n\n(optional) customerName: 'name'"
+			},
+			"response": [
+				{
+					"name": "[GET] Get All Customer Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/travelticket/customer?customerName=test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "customerName",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "741"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e5-La7+OyR9aec66r32YKcJC75OUOE\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:43:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"customer_name\": \"test create\",\n            \"customer_dob\": \"1997-11-10\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:23:03.000Z\",\n            \"updatedAt\": \"2024-02-02T07:23:03.000Z\",\n            \"bookings\": [\n                {\n                    \"id\": 1,\n                    \"booking_type\": \"VIP\",\n                    \"booking_price\": \"20000.00\",\n                    \"createdAt\": \"2024-02-02T07:43:28.000Z\"\n                },\n                {\n                    \"id\": 2,\n                    \"booking_type\": \"VIP\",\n                    \"booking_price\": \"205000.00\",\n                    \"createdAt\": \"2024-02-02T07:43:38.000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"customer_name\": \"test create\",\n            \"customer_dob\": \"1997-11-10\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:27:14.000Z\",\n            \"updatedAt\": \"2024-02-02T07:27:14.000Z\",\n            \"bookings\": []\n        },\n        {\n            \"id\": 5,\n            \"customer_name\": \"test create\",\n            \"customer_dob\": \"1997-11-10\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:37:25.000Z\",\n            \"updatedAt\": \"2024-02-02T07:37:25.000Z\",\n            \"bookings\": []\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "[GET] Get All Coupons Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/travelticket/coupon?couponName=dis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"coupon"
+					],
+					"query": [
+						{
+							"key": "couponName",
+							"value": "dis"
+						}
+					]
+				},
+				"description": "Get bookings data with or without filter\n\nparams:\n\n(optional) couponName: 'name'"
+			},
+			"response": [
+				{
+					"name": "[GET] Get All Coupons Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/travelticket/coupon?couponName=dis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"coupon"
+							],
+							"query": [
+								{
+									"key": "couponName",
+									"value": "dis"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "348"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15c-2HEFbn/7Rz4wdJ1QV3kQ2qJH42s\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:46:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"coupon_name\": \"Kupon diskon\",\n            \"coupon_prc_cut\": \"40000.99\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:45:03.000Z\",\n            \"updatedAt\": \"2024-02-02T07:45:03.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"coupon_name\": \"Kupon diskon 2\",\n            \"coupon_prc_cut\": \"70000.99\",\n            \"createdBy\": 1,\n            \"createdAt\": \"2024-02-02T07:45:12.000Z\",\n            \"updatedAt\": \"2024-02-02T07:45:12.000Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "[GET] Get Booking Detail Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/travelticket/booking/detail?bookingId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"booking",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "bookingId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Get booking detail data with booking id\n\nparams:\n\n(required) bookingId: 1"
+			},
+			"response": [
+				{
+					"name": "[GET] Get Booking Detail Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/travelticket/booking/detail?bookingId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"booking",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "bookingId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "399"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"18f-2JUSHivU8sd2fBWvJ/j0dVFOlq4\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:47:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 2,\n        \"booking_type\": \"VIP\",\n        \"booking_price\": \"205000.00\",\n        \"createdBy\": 1,\n        \"createdAt\": \"2024-02-02T07:43:38.000Z\",\n        \"updatedAt\": \"2024-02-02T07:43:38.000Z\",\n        \"customer\": {\n            \"customer_name\": \"test create\"\n        },\n        \"coupon_connectors\": [\n            {\n                \"id\": 2,\n                \"coupon\": {\n                    \"coupon_name\": \"Kupon diskon\",\n                    \"coupon_prc_cut\": \"40000.99\"\n                }\n            },\n            {\n                \"id\": 1,\n                \"coupon\": {\n                    \"coupon_name\": \"Kupon diskon 2\",\n                    \"coupon_prc_cut\": \"70000.99\"\n                }\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Register New Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullname\": \"abc2\",\r\n    \"dob\": \"1999-03-21\",\r\n    \"email\": \"aaaa@a.a\",\r\n    \"password\": \"aaa123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				},
+				"description": "Register Admin\n\nbody:\n\n(required) email: 'email@mail.com' - valid email\n\n(required) password: 'p4sSw0Rd' - min(6), max(20)\n\n(required) fullname: 'fullname' - min(3), max(255)\n\n(required) dob: '1990-01-01' - format('YYYY-MM-DD')"
+			},
+			"response": [
+				{
+					"name": "[POST] Register New Admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"abc2\",\r\n    \"dob\": \"1999-03-21\",\r\n    \"email\": \"aaaa@a.a\",\r\n    \"password\": \"aaa123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5f-WnYazRaKJIu89E4GcNMCBFGJmPk\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:58:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"message\": \"Register success, please login with new credentials!\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Login Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aaaa@a.a\",\r\n    \"password\": \"aaa123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Login Admin\n\nbody:\n\n(required) email: 'email@mail.com' - valid email\n\n(required) password: 'p4sSw0Rd' - min(6), max(20)"
+			},
+			"response": [
+				{
+					"name": "[POST] Login Admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"aaaa@a.a\",\r\n    \"password\": \"aaa123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "239"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ef-BViskvchm4Whdj/V2W7UO6QhuGc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:58:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZ1bGxuYW1lIjoiYWJjMiIsImlhdCI6MTcwNjg2MDcwNywiZXhwIjoxNzA2OTAzOTA3fQ.AK8XNeZmgB9RGur4nkMntocoUfZ5Osp_p6nRx36lv_g\",\n        \"userData\": {\n            \"fullname\": \"abc2\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Reset Password Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aaaa@a.a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/resetpassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"resetpassword"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "[POST] Reset Password Admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"aaaa@a.a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/resetpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"resetpassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7b-2hHvPW8v+cve95dk6VdOJ5IGZ84\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:39:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"message\": \"Password has been reset, please use new password!\",\n        \"newPassword\": \"Ak6JdE2IPglEqI\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[PATCH] Change Password Admin",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"oldPassword\": \"7ePQ9kWRR7tNha\",\r\n    \"newPassword\": \"aaa123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/changepassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"changepassword"
+					]
+				},
+				"description": "Change admin password requires oldpassword and new password\n\nbody:\n\n(required) oldPassword: 'p4sSw0Rd' - min(6), max(20)\n\n(required) newPassword: 'p4sSw0Rd' - min(6), max(20)"
+			},
+			"response": [
+				{
+					"name": "[PATCH] Change Password Admin",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"7ePQ9kWRR7tNha\",\r\n    \"newPassword\": \"aaa123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/changepassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"changepassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"60-DvqB5rit3zZV7TUxydmYZ168E1k\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 09:04:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"message\": \"Password updated! Next time login use new password...\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[GET] Get Admin Profile Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"profile"
+					]
+				},
+				"description": "Get user profile data from logined user (Require Authorization)"
+			},
+			"response": [
+				{
+					"name": "[GET] Get Admin Profile Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "259"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"103-fL63/OwRwl4qZf545De/zUAdtEA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:58:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"aaaa@a.a\",\n        \"password\": \"$2b$12$4l2r07xkdvX/IFwWU3a7M./rqGtj6T/B3d0zavPWADs7ZCQARZldu\",\n        \"fullname\": \"abc2\",\n        \"dob\": \"1999-03-21T00:00:00.000Z\",\n        \"createdAt\": \"2024-02-02T07:58:14.000Z\",\n        \"updatedAt\": \"2024-02-02T07:58:14.000Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[PATCH] Update Profile Admin",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullname\": \"Test update\",\r\n    \"dob\": \"1995-02-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/profile/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"profile",
+						"update"
+					]
+				},
+				"description": "Change admin general data\n\nbody:\n\n(required) fullname: 'fullname' - min(3), max(255)\n\n(required) dob: '1990-01-01' - format('YYYY-MM-DD')"
+			},
+			"response": [
+				{
+					"name": "[PATCH] Update Profile Admin",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"Test update\",\r\n    \"dob\": \"1995-02-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/profile/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"profile",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-QTpF17tacOHJqORk5+9O4DhJUmw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 09:03:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"message\": \"Profile updated!\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Create Customer Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"test create\",\r\n    \"dob\": \"1997-11-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/customer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"customer",
+						"create"
+					]
+				},
+				"description": "Create new customer data (Require Authorization)\n\nbody:\n\n(required) name: 'name'\n\n(required) dob: '1999-01-01' - format('YYYY-MM-DD')"
+			},
+			"response": [
+				{
+					"name": "[POST] Create Customer Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test create\",\r\n    \"dob\": \"1997-11-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/customer/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"customer",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "231"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e7-flSSOGlXiuSZhL+8g1ijTPbOUT4\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:58:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"createdId\": 1,\n        \"createdData\": {\n            \"id\": 1,\n            \"customer_name\": \"test create\",\n            \"customer_dob\": \"1997-11-10T00:00:00.000Z\",\n            \"createdBy\": 1,\n            \"updatedAt\": \"2024-02-02T07:58:49.550Z\",\n            \"createdAt\": \"2024-02-02T07:58:49.550Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Create Booking Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZ1bGxuYW1lIjoiYWJjIiwibG9naW5EYXRlIjoiMjAyNC0wMi0wMiAwNjozMjo1NSIsImlhdCI6MTcwNjg1NTU3NSwiZXhwIjoxNzA2ODk4Nzc1fQ.vTPpzmsDBxSrDJRAhrs0UUuE7SKJ-QL2rz355L4jrWM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\": 1,\r\n    \"type\": \"VIP\",\r\n    \"price\": 250000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/booking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"booking",
+						"create"
+					]
+				},
+				"description": "Create new booking data (Require Authorization)\n\nbody:\n\n(required) customerId: 1\n\n(required) type: 'VIP' - acceptable(\\[ 'VIP', 'ECO'\\])\n\n(required) price: 9999.99 - min(5,000), max(2,000,000)"
+			},
+			"response": [
+				{
+					"name": "[POST] Create Booking Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZ1bGxuYW1lIjoiYWJjIiwibG9naW5EYXRlIjoiMjAyNC0wMi0wMiAwNjozMjo1NSIsImlhdCI6MTcwNjg1NTU3NSwiZXhwIjoxNzA2ODk4Nzc1fQ.vTPpzmsDBxSrDJRAhrs0UUuE7SKJ-QL2rz355L4jrWM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 1,\r\n    \"type\": \"VIP\",\r\n    \"price\": 250000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/booking/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"booking",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "219"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"db-dI9k10YEooC9uOs0f+yNEatoUyU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:59:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"createdId\": 1,\n        \"createdData\": {\n            \"id\": 1,\n            \"customer_id\": 1,\n            \"booking_type\": \"VIP\",\n            \"booking_price\": 250000,\n            \"createdBy\": 1,\n            \"updatedAt\": \"2024-02-02T07:59:08.226Z\",\n            \"createdAt\": \"2024-02-02T07:59:08.226Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[POST] Create Coupon Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Kupon diskon\",\r\n    \"priceCut\": 40000.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/coupon/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"coupon",
+						"create"
+					]
+				},
+				"description": "Create new coupon data (Require Authorization)\n\nbody:\n\n(required) name: 'name'\n\n(required) priceCut: 9999.99 - min(5,000), max(200,000)"
+			},
+			"response": [
+				{
+					"name": "[POST] Create Coupon Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Kupon diskon\",\r\n    \"priceCut\": 40000.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/coupon/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"coupon",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "214"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d6-qQTqr2amI5CSB0LPEu8XH1DbDwM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 07:59:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"createdId\": 1,\n        \"createdData\": {\n            \"id\": 1,\n            \"coupon_name\": \"Kupon diskon\",\n            \"coupon_prc_cut\": 40000.99,\n            \"createdBy\": 1,\n            \"updatedAt\": \"2024-02-02T07:59:18.327Z\",\n            \"createdAt\": \"2024-02-02T07:59:18.327Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[PUT] Apply Coupon to Booking Data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"couponId\": 1,\r\n    \"bookingId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/coupon/apply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"coupon",
+						"apply"
+					]
+				},
+				"description": "Apply coupon to booking data (Require Authorization)\n\nbody:\n\n(required) couponId: 1\n\n(required) bookingId: 1"
+			},
+			"response": [
+				{
+					"name": "[PUT] Apply Coupon to Booking Data",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"couponId\": 1,\r\n    \"bookingId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/coupon/apply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"coupon",
+								"apply"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "188"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bc-ruO+SlSjGLYYvPbJm++s+QupFLI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:03:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"createdId\": 1,\n        \"createdData\": {\n            \"id\": 1,\n            \"coupon_id\": 1,\n            \"booking_id\": 1,\n            \"createdBy\": 1,\n            \"updatedAt\": \"2024-02-02T08:03:27.307Z\",\n            \"createdAt\": \"2024-02-02T08:03:27.307Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[PATCH] Edit Customer Data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Test Edit\",\r\n    \"dob\": \"1999-01-01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/customer/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"customer",
+						"edit"
+					]
+				},
+				"description": "Edit existing customer data (Require Authorization)\n\nbody:\n\n(required) id: 1\n\n(required) name: 'name'\n\n(required) priceCut: 9999.99 - min(5,000), max(200,000)"
+			},
+			"response": [
+				{
+					"name": "[PATCH] Edit Customer Data",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Test Edit\",\r\n    \"dob\": \"1999-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/customer/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"customer",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "246"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f6-j3JO8Vs1IYn9IiRYQjMQ/mz/t9w\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:04:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"updatedId\": 1,\n        \"updatedData\": {\n            \"id\": 1,\n            \"customer_name\": \"Test Edit\",\n            \"customer_dob\": \"1999-01-01T00:00:00.000Z\",\n            \"createdBy\": 1,\n            \"is_active\": true,\n            \"createdAt\": \"2024-02-02T07:58:49.000Z\",\n            \"updatedAt\": \"2024-02-02T08:04:12.900Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[PATCH] Edit Coupon Data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Edit Kupon\",\r\n    \"priceCut\": 100000.01\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/coupon/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"coupon",
+						"edit"
+					]
+				},
+				"description": "Edit existing coupon data (Require Authorization)\n\nbody:\n\n(required) id: 1\n\n(required) name: 'name'\n\n(required) dob: '1999-01-01' - format('YYYY-MM-DD')"
+			},
+			"response": [
+				{
+					"name": "[PATCH] Edit Coupon Data",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Edit Kupon\",\r\n    \"priceCut\": 100000.01\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/coupon/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"coupon",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "230"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e6-JWAowr4+o3mGJ7BC44o54dcVcw0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:04:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"updatedId\": 1,\n        \"updatedData\": {\n            \"id\": 1,\n            \"coupon_name\": \"Edit Kupon\",\n            \"coupon_prc_cut\": 100000.01,\n            \"createdBy\": 1,\n            \"is_active\": true,\n            \"createdAt\": \"2024-02-02T07:59:18.000Z\",\n            \"updatedAt\": \"2024-02-02T08:04:21.720Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[DELETE] Delete Booking Data",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/booking/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"booking",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Delete existing booking data (Require Authorization)\n\nbody:\n\n(required) id: 1"
+			},
+			"response": [
+				{
+					"name": "[DELETE] Delete Booking Data",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/booking/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"booking",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-siuga8RukLJI7eU0v7kUpNRJ+EU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:05:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"deletedId\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[DELETE] Delete Customer Data",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/customer/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"customer",
+						"delete"
+					]
+				},
+				"description": "Delete existing customer data (Require Authorization)\n\nbody:\n\n(required) id: 1"
+			},
+			"response": [
+				{
+					"name": "[DELETE] Delete Customer Data",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/customer/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"customer",
+								"delete"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-siuga8RukLJI7eU0v7kUpNRJ+EU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:05:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"deletedId\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[DELETE] Delete Coupon Data",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/coupon/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"coupon",
+						"delete"
+					]
+				},
+				"description": "Delete existing coupon data (Require Authorization)\n\nbody:\n\n(required) id: 1"
+			},
+			"response": [
+				{
+					"name": "[DELETE] Delete Coupon Data",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/coupon/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"coupon",
+								"delete"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-siuga8RukLJI7eU0v7kUpNRJ+EU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:05:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"deletedId\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "[DELETE] Discard Coupon From Booking",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/travelticket/coupon/unapply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"travelticket",
+						"coupon",
+						"unapply"
+					]
+				},
+				"description": "Discard existing applied coupon in booking data using connector id (Require Authorization)\n\nbody:\n\n(required) id: 1"
+			},
+			"response": [
+				{
+					"name": "[DELETE] Discard Coupon From Booking",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/travelticket/coupon/unapply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"travelticket",
+								"coupon",
+								"unapply"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-siuga8RukLJI7eU0v7kUpNRJ+EU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 02 Feb 2024 08:04:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"deletedId\": 1\n    }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{User 1}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "User 1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZ1bGxuYW1lIjoiYWJjIiwiaWF0IjoxNzA2ODU3ODQwLCJleHAiOjE3MDY5MDEwNDB9.W7ZJwJpOkphgwQiVm6S2BIEGJ22tHqcjfBuDFItN8J0"
+		},
+		{
+			"key": "User 2",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImZ1bGxuYW1lIjoiYWJjMiIsImlhdCI6MTcwNjg2MDEwMCwiZXhwIjoxNzA2OTAzMzAwfQ.Xq1oY0p3ZzO4wG3LeMD2ghlBM3le7i6SoUX6aJC0T-s",
+			"type": "string"
+		}
+	]
+}

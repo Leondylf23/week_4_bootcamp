@@ -25,6 +25,10 @@ module.exports = {
           as: 'booking_id',
         }
       },
+      createdBy: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       is_active: {
         type: Sequelize.BOOLEAN,
         defaultValue: 1

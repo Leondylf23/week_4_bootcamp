@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   coupon_connector.init({
     coupon_id: DataTypes.INTEGER,
     booking_id: DataTypes.INTEGER,
+    createdBy: DataTypes.INTEGER,
     is_active: DataTypes.BOOLEAN
   }, {
     sequelize,

@@ -13,11 +13,25 @@ const sessionAge = process.env.SESSION_AGE || '12h'
 // PRIVATE FUNCTIONS
 const __generateHashPassword = (password) => {
     return bcrypt.hashSync(password, passwordSaltRound);
-}
+};
+
 const __compareHashPassword = (inputedPassword, hashedPassword) => {
     return bcrypt.compareSync(inputedPassword, hashedPassword)
-}
-// TRAVELTICKET HELPERS FUNCTIONS
+};
+
+const __generateRandomString = (length) => {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      result += charset.charAt(randomIndex);
+    }
+  
+    return result;
+};
+
+// AUTH ADMIN HELPERS FUNCTIONS
 const loginAuthentication = async (dataObject) => {
     const { email, password } = dataObject;
 
@@ -35,8 +49,6 @@ const loginAuthentication = async (dataObject) => {
 
         const fullname = data?.dataValues?.fullname;
         const userId = data?.dataValues?.id;
-        const dateNow = new Date();
-        const loginDate = dateNow.toISOString().slice(0, 19).replace('T', ' '); 
         const constructData = { userId, fullname };
 
         const token = jwt.sign(constructData, signatureSecretKey, { expiresIn: sessionAge });
@@ -80,8 +92,73 @@ const getAdminProfile = async (adminId) => {
         const data = await db.admin.findByPk(adminId);
 
         if(_.isEmpty(data)) throw Boom.badData('Profile data not found, maybe bad session data!');
+        
+        const dataValue = data?.dataValues;
+        const filteredData = {...dataValue, password: undefined}
 
-        return Promise.resolve(data);
+        return Promise.resolve(filteredData);
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
+};
+
+const changePassword = async (dataObject, adminId) => {
+    const { oldPassword, newPassword } = dataObject;
+
+    try {
+        const data = await db.admin.findByPk(adminId);
+
+        if(_.isEmpty(data)) throw Boom.badData('Profile data not found, maybe bad session data!');
+
+        const hashedOldPassword = data?.dataValues?.password;
+        const isValid = __compareHashPassword(oldPassword, hashedOldPassword);
+
+        if(!isValid) throw Boom.unauthorized('Wrong old password!');
+
+        const hashedNewPassword = __generateHashPassword(newPassword);
+        const checkUpdate = await data.update({ password: hashedNewPassword });
+        if(_.isEmpty(checkUpdate)) throw Boom.internal('Password not updated!');
+
+        return Promise.resolve({message: 'Password updated! Next time login use new password...'});
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
+};
+
+const resetPassword = async (dataObject) => {
+    const { email } = dataObject;
+
+    try {
+        const data = await db.admin.findOne({ where: {email} });
+
+        if(_.isEmpty(data)) throw Boom.badData('Unknown email!');
+
+        const randomString = __generateRandomString(14);
+        const hashedNewPassword = __generateHashPassword(randomString);
+        const checkUpdate = await data.update({ password: hashedNewPassword });
+        if(_.isEmpty(checkUpdate)) throw Boom.internal('Password not reset!');
+
+        return Promise.resolve({
+            message: 'Password has been reset, please use new password!',
+            newPassword: randomString
+        });
+    } catch (err) {
+        return Promise.reject(GeneralHelper.errorResponse(err));
+    }
+};
+
+const updateProfile = async (dataObject, adminId) => {
+    const { fullname, dob } = dataObject;
+
+    try {
+        const data = await db.admin.findByPk(adminId);
+
+        if(_.isEmpty(data)) throw Boom.badData('Profile data not found, maybe bad session data!');
+
+        const checkUpdate = await data.update({ fullname, dob });
+        if(_.isEmpty(checkUpdate)) throw Boom.internal('Profile not updated!');
+
+        return Promise.resolve({message: 'Profile updated!'});
     } catch (err) {
         return Promise.reject(GeneralHelper.errorResponse(err));
     }
@@ -90,5 +167,8 @@ const getAdminProfile = async (adminId) => {
 module.exports = {
     loginAuthentication,
     createNewAdmin,
-    getAdminProfile
+    getAdminProfile,
+    changePassword,
+    resetPassword,
+    updateProfile
 }
